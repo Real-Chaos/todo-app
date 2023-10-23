@@ -66,7 +66,58 @@
         </div>
       </header>
     </div>
+    <div class="tasks-content">
+    <!-------------------------------- SIDE NAV --------------------------------->
+    <div class="side-nav">
+      <div class="side-nav-home">
+        <h1 class="title">Home</h1>
+        <div class="all-tasks project-name-div">
+          <img src="./images/inbox.png" alt="" srcset="" />
+          <h4>All Tasks</h4>
+        </div>
+        <div class="today project-name-div">
+          <img src="./images/today.png" alt="" />
+          <h4>Today</h4>
+        </div>
+        <div class="week project-name-div">
+          <img src="./images/week.png" alt="" />
+          <h4>Next 7 days</h4>
+        </div>
+        <div class="important project-name-div">
+          <img src="./images/star.png" alt="" />
+          <h4>Important</h4>
+        </div>
+      </div>
 
+      <div class="side-nav-projects">
+        <h1 class="title">Projects</h1>
+        <div class="project-sidebar"></div>
+        <div class="add-project-form">
+          <form class="project-form">
+            <div class="add-project-input">
+              <i class="fa-solid fa-list-check"></i>
+              <input
+                type="text"
+                id="project-name"
+                placeholder="Enter Project Name"
+                minlength="5"
+                required
+              />
+            </div>
+            <div class="form-buttons">
+              <button class="add-btn" type="submit">Add</button>
+              <button type="button" class="cancel">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <div class="add-project-text">
+          <h3><i class="fa-solid fa-plus"></i> Add Project</h3>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    </div>
     <script src="main.js"></script>
   </body>
 </html>
