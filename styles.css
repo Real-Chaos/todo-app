@@ -334,3 +334,149 @@ input:checked + label svg.moon {
   background: var(--side-nav);
   padding: 20px;
 }
+
+/* ---------------------------------- TASKS LIST  ------------------------- */
+
+.task {
+  background-color: var(--side-nav);
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-left: 8px solid var(--green-tasks);
+}
+
+.task div {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.task .name {
+  gap: 10px;
+}
+
+.task-completion {
+  width: 20px;
+  height: 20px;
+  border: solid red;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.extra-options {
+  cursor: pointer;
+  gap: 20px;
+}
+
+.task div button {
+  background: var(--header-bg);
+  color: var(--text);
+  padding: 5px 20px;
+  outline: none;
+  border: none;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+dialog {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background: var(--side-nav);
+  padding: 40px;
+  width: 500px;
+  color: var(--text);
+  border: none;
+  flex-direction: column;
+}
+
+dialog div:first-child {
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+dialog .real-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.real-details div {
+  display: flex;
+  justify-content: flex-start !important;
+  margin-top: 10px;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 15px;
+  width: 100%;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.close-dialog {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* ---------------------------------- TASKS FORM  ------------------------- */
+
+.add-task-form-div {
+  background-color: var(--header-bg);
+  margin-top: 40px;
+  display: grid;
+  padding: 20px 40px;
+  text-align: center;
+  display: none;
+}
+
+.add-task-form-div h1 {
+  margin-bottom: 20px;
+}
+
+.add-task-form div {
+  display: flex;
+}
+
+.add-task-form .regular-inputs {
+  justify-content: space-between;
+  gap: 5px;
+  flex-direction: column;
+}
+
+.regular-inputs input,
+textarea,
+.special-inputs input,
+select,
+.add-task-form button {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: var(--side-nav);
+  padding: 15px;
+  color: var(--text);
+}
+
+.add-task-form .special-inputs {
+  margin-top: 10px;
+  gap: 20px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.add-task-form button {
+  margin-top: 10px;
+  font-weight: bolder;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.add-tasks h4 {
+  margin-top: 20px;
+  cursor: pointer;
+}

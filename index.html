@@ -65,116 +65,109 @@
           </label>
         </div>
       </header>
-    </div>
-    <div class="tasks-content">
-    <!-------------------------------- SIDE NAV --------------------------------->
-    <div class="side-nav">
-      <div class="side-nav-home">
-        <h1 class="title">Home</h1>
-        <div class="all-tasks project-name-div">
-          <img src="./images/inbox.png" alt="" srcset="" />
-          <h4>All Tasks</h4>
-        </div>
-        <div class="today project-name-div">
-          <img src="./images/today.png" alt="" />
-          <h4>Today</h4>
-        </div>
-        <div class="week project-name-div">
-          <img src="./images/week.png" alt="" />
-          <h4>Next 7 days</h4>
-        </div>
-        <div class="important project-name-div">
-          <img src="./images/star.png" alt="" />
-          <h4>Important</h4>
-        </div>
-      </div>
 
-      <div class="side-nav-projects">
-        <h1 class="title">Projects</h1>
-        <div class="project-sidebar"></div>
-        <div class="add-project-form">
-          <form class="project-form">
-            <div class="add-project-input">
-              <i class="fa-solid fa-list-check"></i>
-              <input
-                type="text"
-                id="project-name"
-                placeholder="Enter Project Name"
-                minlength="5"
-                required
-              />
+      <div class="tasks-content">
+        <!-------------------------------- SIDE NAV --------------------------------->
+        <div class="side-nav">
+          <div class="side-nav-home">
+            <h1 class="title">Home</h1>
+            <div class="all-tasks project-name-div">
+              <img src="./images/inbox.png" alt="" srcset="" />
+              <h4>All Tasks</h4>
             </div>
-            <div class="form-buttons">
-              <button class="add-btn" type="submit">Add</button>
-              <button type="button" class="cancel">Cancel</button>
+            <div class="today project-name-div">
+              <img src="./images/today.png" alt="" />
+              <h4>Today</h4>
             </div>
-          </form>
+            <div class="week project-name-div">
+              <img src="./images/week.png" alt="" />
+              <h4>Next 7 days</h4>
+            </div>
+            <div class="important project-name-div">
+              <img src="./images/star.png" alt="" />
+              <h4>Important</h4>
+            </div>
+          </div>
+
+          <div class="side-nav-projects">
+            <h1 class="title">Projects</h1>
+            <div class="project-sidebar"></div>
+            <div class="add-project-form">
+              <form class="project-form">
+                <div class="add-project-input">
+                  <i class="fa-solid fa-list-check"></i>
+                  <input
+                    type="text"
+                    id="project-name"
+                    placeholder="Enter Project Name"
+                    minlength="5"
+                    required
+                  />
+                </div>
+                <div class="form-buttons">
+                  <button class="add-btn" type="submit">Add</button>
+                  <button type="button" class="cancel">Cancel</button>
+                </div>
+              </form>
+            </div>
+            <div class="add-project-text">
+              <h3><i class="fa-solid fa-plus"></i> Add Project</h3>
+            </div>
+          </div>
         </div>
-        <div class="add-project-text">
-          <h3><i class="fa-solid fa-plus"></i> Add Project</h3>
+        <!------------------------------- TASKS SECTION ---------------------------->
+        <div class="display-tasks">
+          <div class="tasks-header">
+            <h1 class="title">All Tasks</h1>
+          </div>
+          <!------------------------------- TASKS LIST ---------------------------->
+          <div class="tasks-list">
+            <div class="task-div"></div>
+          </div>
+          <!------------------------------- ADD TASK FORM ---------------------------->
+          <div class="add-tasks">
+            <div class="add-task-form-div">
+              <h1>Add Task</h1>
+              <form class="add-task-form">
+                <div class="regular-inputs">
+                  <input
+                    type="text"
+                    placeholder="Task Name"
+                    id="taskname"
+                    name="taskName"
+                    required
+                  />
+                  <textarea
+                    name="description"
+                    id=""
+                    placeholder="Description"
+                    cols="30"
+                    rows="10"
+                    required
+                  ></textarea>
+                </div>
+                <div class="special-inputs">
+                  <input type="date" name="date" id="" required />
+                  <select name="priority" id="priority">
+                    <option value="Priority 1">priority 1</option>
+                    <option value="Priority 2">priority 2</option>
+                    <option value="Priority 3">priority 3</option>
+                    <option value="Priority 4">priority 4</option>
+                  </select>
+                </div>
+                <div class="form-buttons">
+                  <button type="submit">Add Task</button>
+                  <button type="button" class="cancel-task">Cancel</button>
+                </div>
+              </form>
+            </div>
+            <h4><i class="fa-solid fa-plus"></i> Add Task</h4>
+          </div>
         </div>
       </div>
     </div>
-    <!------------------------------- TASKS SECTION ---------------------------->
-    <div class="display-tasks">
-      <div class="tasks-header">
-        <h1 class="title">All Tasks</h1>
-      </div>
-    </div>
 
-    <!------------------------------- TASKS LIST ---------------------------->
-    <div class="tasks-list">
-      <div class="task-div">
-        
-      </div>
-    </div>
-    <!------------------------------- ADD TASK FORM ---------------------------->
-    <div class="add-tasks">
-      <div class="add-task-form-div">
-        <h1>Add Task</h1>
-        <form class="add-task-form">
-          <div class="regular-inputs">
-            <input
-              type="text"
-              placeholder="Task Name"
-              id="taskname"
-              name="taskName"
-              required
-            />
-            <textarea
-              name="description"
-              id=""
-              placeholder="Description"
-              cols="30"
-              rows="10"
-              required
-            ></textarea>
-          </div>
-          <div class="special-inputs">
-            <input type="date" name="date" id="" required />
-            <select name="priority" id="priority">
-              <option value="Priority 1">priority 1</option>
-              <option value="Priority 2">priority 2</option>
-              <option value="Priority 3">priority 3</option>
-              <option value="Priority 4">priority 4</option>
-            </select>
-          </div>
-          <div class="form-buttons">
-            <button type="submit">Add Task</button>
-            <button type="button" class="cancel-task">Cancel</button>
-          </div>
-        </form>
-      </div>
-      <h4><i class="fa-solid fa-plus"></i> Add Task</h4>
-    </div>
-  </div>
-    </div>
-
-    
-
-    </div>
     <script src="handlingDom.js"></script>
     <script src="main.js"></script>
-  
   </body>
 </html>
