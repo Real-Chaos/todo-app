@@ -41,3 +41,19 @@ const toggleProjectForm = (function () {
     addProjectForm.style.display = 'none'
   })
 })()
+
+// ----------------------------- TOGGLE TASK FORM ------------------------------ //
+
+const toggleTasksForm = (function () {
+  const toggler = document.querySelector('.add-tasks h4')
+  const div = document.querySelector('.add-task-form-div')
+  const cancelTask = document.querySelector('.cancel-task')
+
+  toggler.addEventListener('click', () => {
+    div.style.display = 'block'
+  })
+
+  cancelTask.addEventListener('click', () => {
+    div.style.display = 'none'
+  })
+})()
