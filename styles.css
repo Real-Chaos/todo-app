@@ -231,16 +231,6 @@ input:checked + label svg.moon {
 
 /* ----------------------------- SIDE NAV PROJECTS SECTION ------------------------ */
 
-.side-nav-home div:hover,
-.project-card:hover {
-  background-color: rgba(255, 255, 255, 0.4);
-  cursor: pointer;
-}
-
-.side-nav-home img {
-  height: 30px;
-}
-
 .project-sidebar .project-card {
   display: flex;
   justify-content: space-between;
@@ -329,4 +319,18 @@ input:checked + label svg.moon {
 
 .add-project-text:hover {
   cursor: pointer;
+}
+
+/* =============================== TASKS SECTION =================================== */
+
+.display-tasks {
+  width: 100%;
+  padding: 2% 5%;
+}
+
+/* ---------------------------------- TASKS HEADER  ------------------------- */
+
+.display-tasks .tasks-header {
+  background: var(--side-nav);
+  padding: 20px;
 }
