@@ -26,3 +26,18 @@ const toggleNav = (function () {
     }
   })
 })()
+
+// ----------------------------- TOGGLE PROJECT FORM ------------------------------ //
+
+const toggleProjectForm = (function () {
+  const addProjectText = document.querySelector('.add-project-text')
+  const addProjectForm = document.querySelector('.add-project-form')
+  const hideProjectForm = document.querySelector('.cancel')
+  addProjectText.addEventListener('click', () => {
+    addProjectForm.style.display = 'block'
+  })
+
+  hideProjectForm.addEventListener('click', () => {
+    addProjectForm.style.display = 'none'
+  })
+})()
