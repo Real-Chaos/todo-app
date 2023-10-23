@@ -51,9 +51,61 @@ const toggleTasksForm = (function () {
 
   toggler.addEventListener('click', () => {
     div.style.display = 'block'
+    addTask()
   })
 
   cancelTask.addEventListener('click', () => {
     div.style.display = 'none'
   })
 })()
+
+// ----------------------------- DISPLAY TASKS DOM ------------------------------ //
+
+const displayTasks = (tasks) => {
+  // const tasks = taskCollection.tasks
+  const tasksDiv = document.querySelector('.task-div')
+  tasksDiv.innerHTML = ''
+  tasks.forEach((task) => {
+    const html = `
+    <div class="task" data-index="${task.index}">
+    <div class="name">
+      <div class="task-completion completed"></div>
+      <h3>${task.name}</h3>
+    </div>
+    <div class="extra-options">
+      <button class="details-btn">Details</button>
+      <h5>${task.date}</h5>
+      <i class="fa-solid fa-user-pen edit-task-btn"></i>
+      <i class="fa-solid fa-trash-can delete-task-btn"></i>
+    </div>
+    <dialog>
+      <div>
+        <h3>${task.name}</h3>
+        <i class="fa-regular fa-circle-xmark close-dialog"></i>
+      </div>
+      <div class="real-details">
+        <div>
+          <h4>Project:</h4>
+          <p>Home</p>
+        </div>
+        <div>
+          <h4>Priority:</h4>
+          <p>${task.priority}</p>
+        </div>
+        <div>
+          <h4>Due Date:</h4>
+          <p>${task.date}</p>
+        </div>
+        <div>
+          <h4>Description: </h4>
+          <p>
+            ${task.description}
+          </p>
+        </div>
+      </div>
+    </dialog>
+  </div>
+    `
+    tasksDiv.innerHTML += html
+  })
+}
