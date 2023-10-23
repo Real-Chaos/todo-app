@@ -1,0 +1,154 @@
+/* ----------------------- GLOBAL STYLES ---------------------*/
+
+:root.dark {
+  --header-bg: #22303c;
+  --green-logo: #2aab54;
+  --side-nav: #15202b;
+  --text: #eaebec;
+  --body: #192734;
+  --green-tasks: #2abd67;
+  --green-hover: #a0e0bb;
+  --shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.4),
+    inset 0px -5px 15px rgba(255, 255, 255, 0.4);
+}
+
+:root.light {
+  --header-bg: #f2f3f5;
+  --green-logo: #2abd67;
+  --side-nav: #fefcfe;
+  --text: #494958;
+  --body: #ececec;
+  --green-tasks: #2abd67;
+  --green-hover: #a0e0bb;
+  --shadow: inset 0px 5px 15px rgba(0, 0, 0, 0.4),
+    inset 0px -5px 15px rgba(255, 255, 255, 0.4);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--text);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background: var(--body);
+  transition: 1s;
+}
+
+/*---------------------------- HEADER ------------------------ */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--header-bg);
+  padding: 20px 40px;
+}
+
+header div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header .logo-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+header .logo-div .logo span {
+  color: var(--green-logo);
+}
+
+.logo-div img {
+  width: 40px;
+  height: 40px;
+}
+
+header .nav-toggler {
+  font-size: 35px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+header .nav-toggler:hover {
+  background: rgba(183, 180, 196, 0.4);
+}
+
+/* ------------------------------- THEME TOGGLER ------------------------------ */
+
+label {
+  width: 100px;
+  height: 50px;
+  position: relative;
+  display: block;
+  background: #ebebeb;
+  border-radius: 200px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+label:after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background: linear-gradient(180deg, #ffcc89, #d8860b);
+  border-radius: 180px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+header input {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+header input:checked + label {
+  background: #242424;
+}
+header input:checked + label:after {
+  left: 95px;
+  transform: translateX(-100%);
+  background: linear-gradient(180deg, #777, #3a3a3a);
+}
+label,
+label:after {
+  transition: 0.3s;
+}
+label:active:after {
+  width: 10px;
+}
+
+input:checked + label {
+  background: #242424;
+}
+
+label svg {
+  position: absolute;
+  width: 30px;
+  top: 10px;
+  z-index: 100;
+}
+label svg.sun {
+  left: 10px;
+  fill: #fff;
+  transition: 0.3s;
+}
+
+label svg.moon {
+  left: 60px;
+  fill: #7e7e7e;
+  transition: 0.3s;
+}
+input:checked + label svg.sun {
+  fill: #7e7e7e;
+}
+input:checked + label svg.moon {
+  fill: #fff;
+}
