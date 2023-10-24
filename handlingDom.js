@@ -105,6 +105,12 @@ const displayTasks = (tasks) => {
             ${task.description}
           </p>
         </div>
+        <div>
+          <h4>Completed: </h4>
+          <p>
+            ${task.completed}
+          </p>
+        </div>
       </div>
     </dialog>
   </div>

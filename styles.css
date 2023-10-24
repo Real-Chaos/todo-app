@@ -35,6 +35,7 @@ body {
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   background: var(--body);
   transition: 1s;
+  overflow-y: hidden;
 }
 
 /*---------------------------- HEADER ------------------------ */
