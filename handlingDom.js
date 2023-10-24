@@ -85,7 +85,7 @@ const displayTasks = (tasks) => {
       <div class="real-details">
         <div>
           <h4>Project:</h4>
-          <p>Home</p>
+          <p>${task.project}</p>
         </div>
         <div>
           <h4>Priority:</h4>

@@ -10,6 +10,10 @@ const tasksObject = {
   filterTasks: function (filter) {
     if (filter === 'All Tasks') {
       return this.getAllTasks()
+    } else {
+      return (this.displayedTasks = this.tasks.filter(
+        (task) => task.project === filter
+      ))
     }
   },
   getSpecificTask: function (filter) {
@@ -23,7 +27,6 @@ const tasksObject = {
     return returnTask
   },
   setEditedTask: function (editedTask) {
-    console.log(editedTask)
     this.tasks.forEach((task, i) => {
       if (task.index === editedTask.index) {
         this.tasks[i] = editedTask
@@ -33,25 +36,48 @@ const tasksObject = {
   },
   deleteTask: function (deleteTask) {
     this.tasks = this.tasks.filter((task) => task.index != deleteTask.index)
-    return this.tasks
+    return this.tasks.filter(
+      (task) => task.project === projectsObject.projectFilter
+    )
   },
 }
 
 const projectsObject = {
   projects: [],
+  projectFilter: 'All Tasks',
+  setProjectsFilter: function (filter) {
+    this.projectFilter = filter
+  },
   setEditedProject: function (editedProject) {
     this.projects.forEach((project, i) => {
       if (project.index === editedProject.index) {
+        tasksObject.tasks.forEach((task) => {
+          if (task.project === this.projects[i].name) {
+            console.log(tasksObject.tasks)
+            task.project = editedProject.name
+          }
+        })
         this.projects[i] = editedProject
+        console.log(editedProject)
       }
     })
+    console.log(this.projects)
     return this.projects
   },
-  deleteProject: function(index) {
-    const deletePro = this.projects.filter(project => project.index !== index)
+  deleteProject: function (index) {
+    let deletedProject
+    const deletePro = this.projects.filter((project) => {
+      if (project.index === index) {
+        deletedProject = project
+      }
+      return project.index !== index
+    })
     this.projects = deletePro
+    tasksObject.tasks = tasksObject.tasks.filter(
+      (task) => task.project !== deletedProject.name
+    )
     return this.projects
-  }
+  },
 }
 
 // ----------------------------- TASK AND PROJECT CLASS ---------------------------- //
@@ -62,7 +88,8 @@ class newTask {
     this.description = description
     this.date = date
     this.priority = priority
-    this.index = tasksObject.getAllTasks().length
+    ;(this.index = tasksObject.getAllTasks().length),
+      (this.project = projectsObject.projectFilter)
   }
 
   addToTaskList(task) {
@@ -110,7 +137,9 @@ const addTask = function () {
       task.addToTaskList(task)
 
       div.style.display = 'none'
-      const tasksToDisplay = tasksObject.filterTasks('All Tasks')
+      const tasksToDisplay = tasksObject.filterTasks(
+        projectsObject.projectFilter
+      )
       displayTasks(tasksToDisplay)
       taskForm.reset()
     },
@@ -140,6 +169,7 @@ const editTask = (e) => {
         date: e.target.elements.date.value,
         priority: e.target.elements.priority.value,
         index: specificTask.index,
+        project: specificTask.project,
       }
 
       console.log(taskObj)
@@ -192,7 +222,9 @@ const toggleProjectOptions = function (ele) {
 // -------------------------- RENAME PROJECT ------------------------- //
 
 const renameProject = (e) => {
-  const index = Number(e.parentElement.parentElement.getAttribute('data-index'))
+  const index = Number(
+    e.parentElement.parentElement.parentElement.getAttribute('data-index')
+  )
   const editProject = document.querySelector('.edit-project')
   const editProjectForm = document.querySelector('.edit-project-form')
 
@@ -217,7 +249,9 @@ const renameProject = (e) => {
 // -------------------------- DELETE PROJECT ------------------------- //
 
 const deleteProject = (e) => {
-  const index = Number(e.parentElement.parentElement.getAttribute('data-index'))
+  const index = Number(
+    e.parentElement.parentElement.parentElement.getAttribute('data-index')
+  )
   addProjectToSidenavDOM(projectsObject.deleteProject(index))
 }
 
@@ -232,23 +266,11 @@ const changeTaskHeader = function (text) {
 
 const alternateTask = function (e) {
   const projectNameDiv = document.querySelectorAll('.project-name-div')
-  projectNameDiv.forEach(div => div.style.borderLeft='none')
+  projectNameDiv.forEach((div) => (div.style.borderLeft = 'none'))
   e.style.borderLeft = '5px solid var(--green-hover)'
   const selectedProject = e.getElementsByTagName('H4')[0].textContent
   changeTaskHeader(selectedProject)
-  // const helperFunc = (arr) => {
-  //   arr.forEach((a) => {
-  //     a.addEventListener('click', () => {
-  //       arr.forEach((a) => (a.style.borderLeft = 'none'))
-  //       a.style.borderLeft = '5px solid var(--green-hover)'
-  //       
-  //       changeTaskHeader(selectedProject)
-  //       taskCollection.taskProject = selectedProject
-  //       renderProjects(taskCollection.taskProject)
-  //       allFunction()
-  //     })
-  //   })
-  // }
-  // const projectNameDiv = document.querySelectorAll('.project-name-div')
-  // helperFunc(projectNameDiv)
+  projectsObject.setProjectsFilter(selectedProject)
+  const tasksToDisplay = tasksObject.filterTasks(selectedProject)
+  displayTasks(tasksToDisplay)
 }
