@@ -359,9 +359,25 @@ input:checked + label svg.moon {
 .task-completion {
   width: 20px;
   height: 20px;
-  border: solid red;
+
   border-radius: 50%;
   cursor: pointer;
+}
+
+.Priority1{
+  border: solid #d1453b;
+}
+
+.Priority2{
+  border: solid #eb8909;
+}
+
+.Priority3{
+  border: solid #246fe0;
+}
+
+.Priority4 {
+  border: solid var(--green-tasks);
 }
 
 .extra-options {
