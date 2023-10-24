@@ -24,14 +24,33 @@ const tasksObject = {
   },
   setEditedTask: function (editedTask) {
     console.log(editedTask)
-    const filter = this.tasks.filter((task) => task.index != editedTask.index)
-    console.log(filter)
-    this.tasks = [...filter, editedTask]
+    this.tasks.forEach((task, i) => {
+      if (task.index === editedTask.index) {
+        this.tasks[i] = editedTask
+      }
+    })
     return this.tasks
   },
-  deleteTask: function(deleteTask) {
+  deleteTask: function (deleteTask) {
     this.tasks = this.tasks.filter((task) => task.index != deleteTask.index)
     return this.tasks
+  },
+}
+
+const projectsObject = {
+  projects: [],
+  setEditedProject: function (editedProject) {
+    this.projects.forEach((project, i) => {
+      if (project.index === editedProject.index) {
+        this.projects[i] = editedProject
+      }
+    })
+    return this.projects
+  },
+  deleteProject: function(index) {
+    const deletePro = this.projects.filter(project => project.index !== index)
+    this.projects = deletePro
+    return this.projects
   }
 }
 
@@ -51,16 +70,14 @@ class newTask {
   }
 }
 
-
 class projects {
-  constructor(name) {
-    this.name = name
-    this.projectsArray = []
+  constructor({ name }) {
+    ;(this.name = name), (this.index = projectsObject.projects.length)
   }
 
   addProject(project) {
-    this.projectsArray.push(project)
-    addProjectToSidenavDOM(this.projectsArray)
+    projectsObject.projects.push(project)
+    addProjectToSidenavDOM(projectsObject.projects)
   }
 }
 
@@ -136,7 +153,6 @@ const editTask = (e) => {
 
 // ----------------------------- DELETE TASK ------------------------------ //
 
-
 const deleteTask = (e) => {
   let taskIndex = Number(
     e.parentElement.parentElement.getAttribute('data-index')
@@ -152,9 +168,55 @@ const addProjectToSidenav = (function () {
   const input = document.querySelector('#project-name')
   addProjectForm.addEventListener('submit', (e) => {
     e.preventDefault()
-    const project = new projects(input.value)
+    const projectObj = {
+      name: input.value,
+    }
+    const project = new projects(projectObj)
+
     project.addProject(project)
     input.value = ''
-    toggleProjectOptions()
+    addProjectForm.style.display = 'none'
   })
 })()
+
+// -------------------------- EXTRA OPTIONS PROJECT TOGGLER ------------------------- //
+
+const toggleProjectOptions = function (ele) {
+  const optionsDiv = ele.parentElement
+  const tagsElements = optionsDiv.getElementsByTagName('div')[0]
+  tagsElements.style.display === 'block'
+    ? (tagsElements.style.display = 'none')
+    : (tagsElements.style.display = 'block')
+}
+
+// -------------------------- RENAME PROJECT ------------------------- //
+
+const renameProject = (e) => {
+  const index = Number(e.parentElement.parentElement.getAttribute('data-index'))
+  const editProject = document.querySelector('.edit-project')
+  const editProjectForm = document.querySelector('.edit-project-form')
+
+  editProject.style.display = 'block'
+  editProjectForm.addEventListener(
+    'submit',
+    (e) => {
+      e.preventDefault()
+      const projectObj = {
+        name: e.target.elements['edited-project-name'].value,
+        index: index,
+      }
+
+      addProjectToSidenavDOM(projectsObject.setEditedProject(projectObj))
+      editProject.style.display = 'none'
+      editProjectForm.reset()
+    },
+    { once: true }
+  )
+}
+
+// -------------------------- DELETE PROJECT ------------------------- //
+
+const deleteProject = (e) => {
+  const index = Number(e.parentElement.parentElement.getAttribute('data-index'))
+  addProjectToSidenavDOM(projectsObject.deleteProject(index))
+}

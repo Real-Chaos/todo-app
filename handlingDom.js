@@ -51,7 +51,6 @@ const toggleTasksForm = (function () {
 
   toggler.addEventListener('click', () => {
     div.style.display = 'block'
-    
   })
 
   cancelTask.addEventListener('click', () => {
@@ -110,9 +109,7 @@ const displayTasks = (tasks) => {
   })
 }
 
-
 // ----------------------------- DISPLAY TASKS DETAILS ------------------------------ //
-
 
 const openModal = function (e) {
   console.log(e.parentElement.parentElement.getElementsByTagName('dialog')[0])
@@ -120,7 +117,7 @@ const openModal = function (e) {
   const closeButtons = document.querySelectorAll('.close-dialog')
 
   // "Show the dialog" button opens the dialog modally
-  
+
   dialog.showModal()
 
   // closeButtons.forEach((closeButton, index) => {
@@ -130,14 +127,13 @@ const openModal = function (e) {
   // })
 }
 
-
 const closeModal = function (e) {
   console.log(e.parentElement.parentElement.getElementsByTagName('dialog')[0])
   const dialog = e.parentElement.parentElement
   const closeButtons = document.querySelectorAll('.close-dialog')
 
   // "Show the dialog" button opens the dialog modally
-  
+
   dialog.close()
 
   // closeButtons.forEach((closeButton, index) => {
@@ -146,7 +142,6 @@ const closeModal = function (e) {
   //   })
   // })
 }
-
 
 // ----------------------------- EDIT TASK FROM DIV------------------------------ //
 
@@ -159,33 +154,28 @@ const editTaskFormDOM = (task) => {
   form.elements.description.value = task.description
   form.elements.date.value = task.date
   form.elements.priority.value = task.priority
-
-  
-
 }
-
-
 
 // ----------------------------- ADD PROJECT TO NAV ------------------------------ //
 const addProjectToSidenavDOM = (projects) => {
   const projectSidebar = document.querySelector('.project-sidebar')
+  projectSidebar.innerHTML = ''
   projects.forEach((project) => {
-    const html = `<div class="project-card project-name-div" data-index="0">
+    const html = `<div class="project-card project-name-div" data-index="${project.index}">
     <div class="text">
       <i class="fa-solid fa-list-check"></i>
       <h4>${project.name}</h4>
     </div>
     <div class="options">
-      <i class="fa-solid fa-ellipsis-vertical options-toggler"></i>
+      <i class="fa-solid fa-ellipsis-vertical options-toggler" onclick="toggleProjectOptions(this)"></i>
 
       <div class="options-text">
-        <h5>Rename</h5>
-        <h5>Delete</h5>
+        <h5 onclick="renameProject(this)">Rename</h5>
+        <h5 onclick="deleteProject(this)">Delete</h5>
       </div>
     </div>
   </div>`
     projectSidebar.innerHTML += html
   })
-
 }
 
