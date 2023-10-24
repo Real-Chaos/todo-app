@@ -69,7 +69,10 @@ const displayTasks = (tasks) => {
     const html = `
     <div class="task ${task.completed}" data-index="${task.index}">
     <div class="name">
-      <div onclick="taskCompleted(this)" class="task-completion ${task.priority.replace(/ /g, '')}"></div>
+      <div onclick="taskCompleted(this)" class="task-completion ${task.priority.replace(
+        / /g,
+        ''
+      )}"></div>
       <h3>${task.name}</h3>
     </div>
     <div class="extra-options">
@@ -117,15 +120,7 @@ const openModal = function (e) {
   const dialog = e.parentElement.parentElement.getElementsByTagName('dialog')[0]
   const closeButtons = document.querySelectorAll('.close-dialog')
 
-  // "Show the dialog" button opens the dialog modally
-
   dialog.showModal()
-
-  // closeButtons.forEach((closeButton, index) => {
-  //   closeButton.addEventListener('click', () => {
-  //     dialogs[index].close()
-  //   })
-  // })
 }
 
 const closeModal = function (e) {
@@ -133,15 +128,7 @@ const closeModal = function (e) {
   const dialog = e.parentElement.parentElement
   const closeButtons = document.querySelectorAll('.close-dialog')
 
-  // "Show the dialog" button opens the dialog modally
-
   dialog.close()
-
-  // closeButtons.forEach((closeButton, index) => {
-  //   closeButton.addEventListener('click', () => {
-  //     dialogs[index].close()
-  //   })
-  // })
 }
 
 // ----------------------------- EDIT TASK FROM DIV------------------------------ //
@@ -179,4 +166,3 @@ const addProjectToSidenavDOM = (projects) => {
     projectSidebar.innerHTML += html
   })
 }
-

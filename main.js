@@ -53,15 +53,13 @@ const projectsObject = {
       if (project.index === editedProject.index) {
         tasksObject.tasks.forEach((task) => {
           if (task.project === this.projects[i].name) {
-            console.log(tasksObject.tasks)
             task.project = editedProject.name
           }
         })
         this.projects[i] = editedProject
-        console.log(editedProject)
       }
     })
-    console.log(this.projects)
+
     return this.projects
   },
   deleteProject: function (index) {
@@ -160,7 +158,7 @@ const editTask = (e) => {
 
   const taskForm = document.querySelector('.edit-task-form')
   const div = document.querySelector('.edit-tasks-form-div')
-  console.log(taskForm)
+
   taskForm.addEventListener(
     'submit',
     (e) => {
@@ -175,7 +173,6 @@ const editTask = (e) => {
         completed: specificTask.completed,
       }
 
-      console.log(taskObj)
       displayTasks(tasksObject.setEditedTask(taskObj))
       div.style.display = 'none'
       taskForm.reset()
@@ -243,7 +240,8 @@ const renameProject = (a) => {
       }
 
       changeTaskHeader(projectObj.name)
-      a.parentElement.parentElement.parentElement.style.borderLeft = "5px solid var(--green-hover)"
+      a.parentElement.parentElement.parentElement.style.borderLeft =
+        '5px solid var(--green-hover)'
 
       addProjectToSidenavDOM(projectsObject.setEditedProject(projectObj))
       editProject.style.display = 'none'
@@ -285,11 +283,9 @@ const alternateTask = function (e) {
 // -------------------------- TASK COMPLETED ------------------------- //
 
 const taskCompleted = (e) => {
-  // console.log(e.parentElement)
-  console.log(tasksObject.getAllTasks())
   const index = Number(e.parentElement.parentElement.getAttribute('data-index'))
   const task = tasksObject.getSpecificTask(index)
-  console.log(task)
+
   let checkCompleted = ''
   task.completed === 'not-completed'
     ? (checkCompleted = 'completed')
@@ -298,10 +294,7 @@ const taskCompleted = (e) => {
     ...task,
     completed: checkCompleted,
   }
-  console.log(taskObj)
-  // console.log(getSpecificTask)
+
   tasksObject.setEditedTask(taskObj)
   displayTasks(tasksObject.filterTasks(projectsObject.projectFilter))
-  // e.style.background = "#d1453b"
-  // console.log(e)
 }
