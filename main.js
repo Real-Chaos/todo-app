@@ -48,6 +48,16 @@ const projectsObject = {
   setProjectsFilter: function (filter) {
     this.projectFilter = filter
   },
+  getSpecificProject: function (filter) {
+    let returnProject = {}
+    this.projects.forEach((project) => {
+      if (project.index === filter) {
+        returnProject = project
+      }
+    })
+
+    return returnProject
+  },
   setEditedProject: function (editedProject) {
     this.projects.forEach((project, i) => {
       if (project.index === editedProject.index) {
@@ -251,15 +261,6 @@ const renameProject = (a) => {
   )
 }
 
-// -------------------------- DELETE PROJECT ------------------------- //
-
-const deleteProject = (e) => {
-  const index = Number(
-    e.parentElement.parentElement.parentElement.getAttribute('data-index')
-  )
-  addProjectToSidenavDOM(projectsObject.deleteProject(index))
-}
-
 // -------------------------- CHANGE TASK HEADER ------------------------- //
 
 const changeTaskHeader = function (text) {
@@ -270,14 +271,32 @@ const changeTaskHeader = function (text) {
 // -------------------------- ALTERNATE PROJECT ------------------------- //
 
 const alternateTask = function (e) {
-  const projectNameDiv = document.querySelectorAll('.project-name-div')
-  projectNameDiv.forEach((div) => (div.style.borderLeft = 'none'))
-  e.style.borderLeft = '5px solid var(--green-hover)'
-  const selectedProject = e.getElementsByTagName('H4')[0].textContent
-  changeTaskHeader(selectedProject)
-  projectsObject.setProjectsFilter(selectedProject)
-  const tasksToDisplay = tasksObject.filterTasks(selectedProject)
-  displayTasks(tasksToDisplay)
+  const project = projectsObject.getSpecificProject(
+    Number(e.getAttribute('data-index'))
+  )
+
+  if (project.name) {
+    const projectNameDiv = document.querySelectorAll('.project-name-div')
+    projectNameDiv.forEach((div) => (div.style.borderLeft = 'none'))
+    e.style.borderLeft = '5px solid var(--green-hover)'
+    const selectedProject = e.getElementsByTagName('H4')[0].textContent
+    changeTaskHeader(selectedProject)
+    projectsObject.setProjectsFilter(selectedProject)
+    const tasksToDisplay = tasksObject.filterTasks(selectedProject)
+    displayTasks(tasksToDisplay)
+  }
+}
+
+// -------------------------- DELETE PROJECT ------------------------- //
+
+const deleteProject = (e) => {
+  const index = Number(
+    e.parentElement.parentElement.parentElement.getAttribute('data-index')
+  )
+  alternateTask(document.querySelector('.all-tasks'))
+  addProjectToSidenavDOM(projectsObject.deleteProject(index))
+  // projectsObject.setProjectsFilter('All Tasks')
+  // alternateTask()
 }
 
 // -------------------------- TASK COMPLETED ------------------------- //
