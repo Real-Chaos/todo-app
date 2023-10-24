@@ -220,3 +220,35 @@ const deleteProject = (e) => {
   const index = Number(e.parentElement.parentElement.getAttribute('data-index'))
   addProjectToSidenavDOM(projectsObject.deleteProject(index))
 }
+
+// -------------------------- CHANGE TASK HEADER ------------------------- //
+
+const changeTaskHeader = function (text) {
+  const taskHeader = document.querySelector('.tasks-header .title')
+  taskHeader.textContent = text
+}
+
+// -------------------------- ALTERNATE PROJECT ------------------------- //
+
+const alternateTask = function (e) {
+  const projectNameDiv = document.querySelectorAll('.project-name-div')
+  projectNameDiv.forEach(div => div.style.borderLeft='none')
+  e.style.borderLeft = '5px solid var(--green-hover)'
+  const selectedProject = e.getElementsByTagName('H4')[0].textContent
+  changeTaskHeader(selectedProject)
+  // const helperFunc = (arr) => {
+  //   arr.forEach((a) => {
+  //     a.addEventListener('click', () => {
+  //       arr.forEach((a) => (a.style.borderLeft = 'none'))
+  //       a.style.borderLeft = '5px solid var(--green-hover)'
+  //       
+  //       changeTaskHeader(selectedProject)
+  //       taskCollection.taskProject = selectedProject
+  //       renderProjects(taskCollection.taskProject)
+  //       allFunction()
+  //     })
+  //   })
+  // }
+  // const projectNameDiv = document.querySelectorAll('.project-name-div')
+  // helperFunc(projectNameDiv)
+}

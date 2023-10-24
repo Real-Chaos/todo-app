@@ -161,8 +161,8 @@ const addProjectToSidenavDOM = (projects) => {
   const projectSidebar = document.querySelector('.project-sidebar')
   projectSidebar.innerHTML = ''
   projects.forEach((project) => {
-    const html = `<div class="project-card project-name-div" data-index="${project.index}">
-    <div class="text">
+    const html = `<div onclick="alternateTask(this)" class="project-card project-name-div" data-index="${project.index}">
+    <div class="text" >
       <i class="fa-solid fa-list-check"></i>
       <h4>${project.name}</h4>
     </div>
