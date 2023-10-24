@@ -380,6 +380,28 @@ input:checked + label svg.moon {
   border: solid var(--green-tasks);
 }
 
+.completed {
+  opacity: 0.5;
+  color: #808080 !important;
+  text-decoration: line-through;
+}
+
+.completed .Priority1{
+  background: #d1453b;
+}
+
+.completed .Priority2{
+  background: #eb8909;
+}
+
+.completed .Priority3{
+  background: #246fe0;
+}
+
+.completed .Priority4 {
+  background: var(--green-tasks);
+}
+
 .extra-options {
   cursor: pointer;
   gap: 20px;

@@ -67,9 +67,9 @@ const displayTasks = (tasks) => {
   tasks.forEach((task) => {
     console.log(task.priority.replace(/ /g, ''))
     const html = `
-    <div class="task" data-index="${task.index}">
+    <div class="task ${task.completed}" data-index="${task.index}">
     <div class="name">
-      <div class="task-completion completed ${task.priority.replace(/ /g, '')}"></div>
+      <div onclick="taskCompleted(this)" class="task-completion ${task.priority.replace(/ /g, '')}"></div>
       <h3>${task.name}</h3>
     </div>
     <div class="extra-options">

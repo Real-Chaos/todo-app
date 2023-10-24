@@ -83,13 +83,14 @@ const projectsObject = {
 // ----------------------------- TASK AND PROJECT CLASS ---------------------------- //
 
 class newTask {
-  constructor({ name, description, date, priority }) {
+  constructor({ name, description, date, priority, completed }) {
     this.name = name
     this.description = description
     this.date = date
     this.priority = priority
     ;(this.index = tasksObject.getAllTasks().length),
       (this.project = projectsObject.projectFilter)
+    this.completed = completed
   }
 
   addToTaskList(task) {
@@ -130,6 +131,7 @@ const addTask = function () {
         description: e.target.elements.description.value,
         date: e.target.elements.date.value,
         priority: e.target.elements.priority.value,
+        completed: 'not-completed',
       }
 
       const task = new newTask(taskObj)
@@ -170,6 +172,7 @@ const editTask = (e) => {
         priority: e.target.elements.priority.value,
         index: specificTask.index,
         project: specificTask.project,
+        completed: specificTask.completed,
       }
 
       console.log(taskObj)
@@ -221,9 +224,10 @@ const toggleProjectOptions = function (ele) {
 
 // -------------------------- RENAME PROJECT ------------------------- //
 
-const renameProject = (e) => {
+const renameProject = (a) => {
+  a.parentElement.style.display = 'none'
   const index = Number(
-    e.parentElement.parentElement.parentElement.getAttribute('data-index')
+    a.parentElement.parentElement.parentElement.getAttribute('data-index')
   )
   const editProject = document.querySelector('.edit-project')
   const editProjectForm = document.querySelector('.edit-project-form')
@@ -237,6 +241,9 @@ const renameProject = (e) => {
         name: e.target.elements['edited-project-name'].value,
         index: index,
       }
+
+      changeTaskHeader(projectObj.name)
+      a.parentElement.parentElement.parentElement.style.borderLeft = "5px solid var(--green-hover)"
 
       addProjectToSidenavDOM(projectsObject.setEditedProject(projectObj))
       editProject.style.display = 'none'
@@ -273,4 +280,28 @@ const alternateTask = function (e) {
   projectsObject.setProjectsFilter(selectedProject)
   const tasksToDisplay = tasksObject.filterTasks(selectedProject)
   displayTasks(tasksToDisplay)
+}
+
+// -------------------------- TASK COMPLETED ------------------------- //
+
+const taskCompleted = (e) => {
+  // console.log(e.parentElement)
+  console.log(tasksObject.getAllTasks())
+  const index = Number(e.parentElement.parentElement.getAttribute('data-index'))
+  const task = tasksObject.getSpecificTask(index)
+  console.log(task)
+  let checkCompleted = ''
+  task.completed === 'not-completed'
+    ? (checkCompleted = 'completed')
+    : (checkCompleted = 'not-completed')
+  const taskObj = {
+    ...task,
+    completed: checkCompleted,
+  }
+  console.log(taskObj)
+  // console.log(getSpecificTask)
+  tasksObject.setEditedTask(taskObj)
+  displayTasks(tasksObject.filterTasks(projectsObject.projectFilter))
+  // e.style.background = "#d1453b"
+  // console.log(e)
 }
